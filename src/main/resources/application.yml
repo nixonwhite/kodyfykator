@@ -1,0 +1,14 @@
+# General
+server:
+  port: 9080
+  error:
+    whitelabel.enabled: true
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
