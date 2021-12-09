@@ -1,15 +1,18 @@
 package ua.org.gurt.kodyfykator.util;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.ToString;
+import org.springframework.util.ResourceUtils;
+import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 @ToString
 public final class Util {
 
-    public static final Map<String, String> OBJECT_TYPE = createMap();
+    public static final Map<String, String> OBJECT_TYPES = createMap();
 
     private static Map<String, String> createMap() {
         Map<String, String> objectMap = new HashMap<>();
@@ -23,6 +26,20 @@ public final class Util {
         objectMap.put("X", "селище");
         objectMap.put("B", "район в місті");
         return Collections.unmodifiableMap(objectMap);
+    }
+
+    public static final List<SettlementEntity> SETTLES = createList();
+
+    private static List<SettlementEntity> createList() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(ResourceUtils.getFile("classpath:kodyfikator.json"),
+                    new TypeReference<List<SettlementEntity>>() {
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
     }
 }
 
