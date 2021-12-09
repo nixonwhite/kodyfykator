@@ -14,6 +14,8 @@ public final class Util {
 
     public static final Map<String, String> OBJECT_TYPES = createMap();
 
+    public static final List<SettlementEntity> SETTLES = createList();
+
     private static Map<String, String> createMap() {
         Map<String, String> objectMap = new HashMap<>();
         objectMap.put("O", "область");
@@ -27,8 +29,6 @@ public final class Util {
         objectMap.put("B", "район в місті");
         return Collections.unmodifiableMap(objectMap);
     }
-
-    public static final List<SettlementEntity> SETTLES = createList();
 
     private static List<SettlementEntity> createList() {
         try {
