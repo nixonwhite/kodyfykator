@@ -44,6 +44,7 @@ public class MyController {
 
             SettlementEntity s = new SettlementEntity();
             if (!entity.getSettlement().isEmpty()) {
+                // settlements
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getSettlement().equals(entity.getSettlement()))
                         .filter(e -> e.getType().equals(entity.getType())).collect(Collectors.toList()).get(0).getName());
 
@@ -56,6 +57,7 @@ public class MyController {
                 s.setType(Util.OBJECT_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
             } else if (!entity.getRegion().isEmpty() && entity.getType().equals("K")) {
+                // cities with special status
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
                         .collect(Collectors.toList()).get(0).getName());
 
