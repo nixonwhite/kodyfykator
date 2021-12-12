@@ -3,7 +3,7 @@ package ua.org.gurt.kodyfykator.util;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.ToString;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 
 import java.io.IOException;
@@ -33,7 +33,7 @@ public final class Util {
     private static List<SettlementEntity> createList() {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(ResourceUtils.getFile("classpath:kodyfikator.json"),
+            return mapper.readValue(new ClassPathResource("classpath:kodyfikator.json").getInputStream(),
                     new TypeReference<List<SettlementEntity>>() {
                     });
         } catch (IOException e) {
