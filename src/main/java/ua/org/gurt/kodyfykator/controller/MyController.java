@@ -2,6 +2,7 @@ package ua.org.gurt.kodyfykator.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,17 +11,27 @@ import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 import ua.org.gurt.kodyfykator.util.Util;
 
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 public class MyController {
 
-    @GetMapping("version")
+    /***
+     *
+     * @return String version of API
+     */
+    @GetMapping(value = "version", produces = MediaType.TEXT_PLAIN_VALUE)
     public String version() {
         return "v1.0";
     }
 
-    @PostMapping("find/{name}")
+    /***
+     * Method finds settlements by given name
+     * @param name String request name
+     * @return JSON array of found objects as String
+     */
+    @PostMapping(value = "find/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String findByName(@PathVariable String name) {
 
         List<SettlementEntity> filteredCities = Util.SETTLES.stream().filter(e -> e.getName().toLowerCase()
@@ -29,8 +40,9 @@ public class MyController {
         List<SettlementEntity> preparedForJSON = new ArrayList<>();
 
         for (SettlementEntity entity : filteredCities) {
+            if (entity.getType().equals("B")) continue; //area in city; we don't care about it
+
             SettlementEntity s = new SettlementEntity();
-            if (entity.getType().equals("B")) continue; //area in city
             if (!entity.getSettlement().isEmpty()) {
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getSettlement().equals(entity.getSettlement()))
                         .filter(e -> e.getType().equals(entity.getType())).collect(Collectors.toList()).get(0).getName());
@@ -52,10 +64,17 @@ public class MyController {
             }
         }
 
+        // sort by types, then by name
         preparedForJSON.sort(Comparator.comparing(SettlementEntity::getType).thenComparing(SettlementEntity::getSettlement));
+
         return getJSONArrayAsString(preparedForJSON);
     }
 
+    /***
+     *
+     * @param preparedForJSON list
+     * @return String representation of JSON array
+     */
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -72,5 +91,4 @@ public class MyController {
         sb.append("]");
         return sb.toString();
     }
-
 }
