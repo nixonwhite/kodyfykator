@@ -5,6 +5,7 @@ Helper reference guide-codifier of the settlements of Ukraine after areas and re
 Used Spring Boot. Embedded Tomcat instance runs at 8080 port
 
 $ mvn clean package 
+
 $ java -jar target/Kodyfykator-1.0-SNAPSHOT.jar
 
 Also available at hub.docker.com
