@@ -22,3 +22,6 @@ Also available at [hub.docker.com](https://hub.docker.com)
 **`GET`** request: `http://localhost:8080/version`
 
 **Result**: version of API used
+
+
+Official documents here: [minregion.gov.ua](https://www.minregion.gov.ua/napryamki-diyalnosti/rozvytok-mistsevoho-samovryaduvannya/administratyvno/kodyfikator-administratyvno-terytorialnyh-odynycz-ta-terytorij-terytorialnyh-gromad/)
