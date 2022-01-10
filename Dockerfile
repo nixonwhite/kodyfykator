@@ -1,6 +1,7 @@
-FROM openjdk:8-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
+FROM openjdk:8-jdk-slim
+RUN addgroup spring && adduser spring --ingroup spring
 USER spring:spring
+WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
 EXPOSE 8080
