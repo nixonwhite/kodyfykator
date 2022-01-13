@@ -1,6 +1,4 @@
 FROM openjdk:8-jdk-oraclelinux8
-#FROM openjdk:8-jdk-slim
-#RUN addgroup spring && adduser spring --ingroup spring
 RUN groupadd spring && adduser spring -g spring
 USER spring:spring
 WORKDIR /app
