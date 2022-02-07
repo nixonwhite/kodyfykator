@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-oraclelinux8
+FROM openjdk:11-jdk-oraclelinux8
 RUN groupadd spring && adduser spring -g spring
 USER spring:spring
 WORKDIR /app

@@ -2,6 +2,8 @@ package ua.org.gurt.kodyfykator.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +19,16 @@ import java.util.stream.Collectors;
 @RestController
 public class MyController {
 
+    @Autowired
+    BuildProperties buildProperties;
+
     /***
      *
-     * @return String version of API
+     * @return String version of app
      */
     @GetMapping(value = "version", produces = MediaType.TEXT_PLAIN_VALUE)
     public String version() {
-        return "v1.0";
+        return buildProperties.getVersion();
     }
 
     /***
