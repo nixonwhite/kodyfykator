@@ -7,7 +7,7 @@ Used Spring Boot. Embedded `Tomcat` instance runs at `8080` port
 ## Build && run
 >$ mvn clean package 
 
->$ java -jar target/Kodyfykator-1.0-SNAPSHOT.jar
+>$ java -jar target/kodyfykator-1.1.3.jar
 
 Also available at [hub.docker.com](https://hub.docker.com)
 
@@ -21,7 +21,7 @@ Also available at [hub.docker.com](https://hub.docker.com)
 
 **`GET`** request: `http://localhost:8080/version`
 
-**Result**: version of API used
+**Result**: version of application
 
 ## Links
 
