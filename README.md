@@ -7,7 +7,7 @@ Used Spring Boot. Embedded `Tomcat` instance runs at `8080` port
 ## Build && run
 >$ mvn clean package -DskipTests
 
->$ java -jar target/kodyfykator-1.1.5.jar
+>$ java -jar target/*.jar
 
 Also available at [hub.docker.com](https://hub.docker.com)
 

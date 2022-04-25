@@ -4,7 +4,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import ua.org.gurt.kodyfykator.KodyfykatorApplication;
-import ua.org.gurt.kodyfykator.controller.MyController;
+import ua.org.gurt.kodyfykator.controller.SettleController;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class KodyfykatorTests {
 
     @Autowired
-    public MyController controller;
+    public SettleController controller;
 
     @Autowired
     private TestRestTemplate testRestTemplate;

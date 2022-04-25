@@ -2,8 +2,9 @@
 server:
   port: 8080
   error:
-    whitelabel.enabled: true
+    whitelabel.enabled: false
 
+# Spring
 spring:
   main:
     allow-bean-definition-overriding: true

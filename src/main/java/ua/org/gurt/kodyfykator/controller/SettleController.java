@@ -2,6 +2,9 @@ package ua.org.gurt.kodyfykator.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.MediaType;
@@ -17,10 +20,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class MyController {
+@Slf4j
+public class SettleController {
 
     @Autowired
     BuildProperties buildProperties;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SettleController.class);
 
     /***
      *
@@ -47,7 +53,8 @@ public class MyController {
         for (SettlementEntity entity : filteredCities) {
             if (entity.getType().equals("B")) continue; //area in city; we don't care about it
 
-            SettlementEntity s = new SettlementEntity();
+            var s = new SettlementEntity();
+
             if (!entity.getSettlement().isEmpty()) {
                 // settlements
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getSettlement().equals(entity.getSettlement()))
@@ -83,16 +90,16 @@ public class MyController {
      * @return String representation of JSON array
      */
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        ObjectMapper mapper = new ObjectMapper();
+        var sb = new StringBuilder();
+        var mapper = new ObjectMapper();
         ListIterator<SettlementEntity> iter = preparedForJSON.listIterator();
+        sb.append("[");
         while (iter.hasNext()) {
             try {
                 sb.append(mapper.writeValueAsString(iter.next()));
                 if (iter.hasNext()) sb.append(",");
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                LOGGER.error("[!]" + e.getMessage());
             }
         }
         sb.append("]");
