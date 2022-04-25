@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -25,7 +26,7 @@ public class KodyfykatorTests {
 
     @Test
     public void testControllerver() {
-        assertThat(this.testRestTemplate.getForObject("http://localhost:8080/version", String.class)).contains("v1");
+        assertThat(this.testRestTemplate.getForObject("http://localhost:8080/version", String.class)).contains("1.1");
     }
 
     @Test
