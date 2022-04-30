@@ -1,6 +1,4 @@
-FROM openjdk:11-oracle
-RUN groupadd spring && adduser spring -g spring
-USER spring:spring
+FROM amazoncorretto:11-al2-jdk
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
