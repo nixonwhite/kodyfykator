@@ -2,6 +2,7 @@ package ua.org.gurt.kodyfykator.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONArray;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,19 +91,13 @@ public class SettleController {
      * @return String representation of JSON array
      */
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
-        var sb = new StringBuilder();
         var mapper = new ObjectMapper();
-        ListIterator<SettlementEntity> iter = preparedForJSON.listIterator();
-        sb.append("[");
-        while (iter.hasNext()) {
-            try {
-                sb.append(mapper.writeValueAsString(iter.next()));
-                if (iter.hasNext()) sb.append(",");
-            } catch (JsonProcessingException e) {
-                LOGGER.error("[!]" + e.getMessage());
-            }
+        var jsonString = "";
+        try {
+            jsonString = mapper.writeValueAsString(preparedForJSON);
+        } catch (JsonProcessingException e) {
+            LOGGER.error("[!]" + e.getMessage());
         }
-        sb.append("]");
-        return sb.toString();
+        return new JSONArray(jsonString).toString();
     }
 }
