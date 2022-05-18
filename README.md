@@ -1,5 +1,7 @@
 # Kodyfykator 2021
 
+[![Java CI with Maven](https://github.com/nixonwhite/kodyfykator/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/nixonwhite/kodyfykator/actions/workflows/maven.yml)
+
 Helper reference guide-codifier of the settlements of Ukraine after areas and regions merging.
 
 Used Spring Boot. Embedded `Tomcat` instance runs at `8080` port
