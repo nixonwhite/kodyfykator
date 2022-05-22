@@ -28,8 +28,7 @@ public final class Util {
         try {
             var mapper = new ObjectMapper();
             return mapper.readValue(new ClassPathResource("classpath:kodyfikator.json").getInputStream(),
-                    new TypeReference<List<SettlementEntity>>() {
-                    });
+                    new TypeReference<List<SettlementEntity>>() {});
         } catch (IOException e) {
             LOGGER.error("[!]" + e.getMessage());
         }

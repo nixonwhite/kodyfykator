@@ -30,7 +30,6 @@ public class SettleController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SettleController.class);
 
     /***
-     *
      * @return String version of app
      */
     @GetMapping(value = "version", produces = MediaType.TEXT_PLAIN_VALUE)
@@ -46,7 +45,7 @@ public class SettleController {
     @PostMapping(value = "find/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String findByName(@PathVariable String name) {
 
-        List<SettlementEntity> filteredCities = Util.SETTLES.stream().filter(e -> e.getName().toLowerCase()
+        var filteredCities = Util.SETTLES.stream().filter(e -> e.getName().toLowerCase()
                 .startsWith(name.toLowerCase())).collect(Collectors.toList());
 
         List<SettlementEntity> preparedForJSON = new ArrayList<>();
@@ -86,7 +85,6 @@ public class SettleController {
     }
 
     /***
-     *
      * @param preparedForJSON list
      * @return String representation of JSON array
      */
