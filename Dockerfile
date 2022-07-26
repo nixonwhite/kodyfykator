@@ -1,4 +1,4 @@
-FROM amazoncorretto:11
+FROM amazoncorretto:11-alpine
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
