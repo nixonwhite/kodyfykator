@@ -15,10 +15,10 @@
     <artifactId>kodyfykator</artifactId>
     <packaging>jar</packaging>
     <name>kodyfykator</name>
-    <version>1.1.8.8</version>
+    <version>1.1.8.9</version>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20220320</version>
+            <version>20220924</version>
         </dependency>
 
         <dependency>
