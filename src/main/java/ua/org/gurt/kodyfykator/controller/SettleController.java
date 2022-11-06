@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ua.org.gurt.kodyfykator.domain.SettleTypes;
 import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 import ua.org.gurt.kodyfykator.util.Util;
 
@@ -51,7 +52,7 @@ public class SettleController {
         List<SettlementEntity> preparedForJSON = new ArrayList<>();
 
         for (SettlementEntity entity : filteredCities) {
-            if (entity.getType().equals("B")) continue; //area in city; we don't care about it
+            if (entity.getType().equals(SettleTypes.CITY_AREA.getName())) continue; //area in city; we don't care about it
 
             var s = new SettlementEntity();
 
@@ -61,14 +62,14 @@ public class SettleController {
                         .filter(e -> e.getType().equals(entity.getType())).collect(Collectors.toList()).get(0).getName());
 
                 s.setRegion(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
-                        .filter(e -> e.getType().equals("O")).collect(Collectors.toList()).get(0).getName());
+                        .filter(e -> e.getType().equals(SettleTypes.REGION.getName())).collect(Collectors.toList()).get(0).getName());
 
                 s.setArea(Util.SETTLES.stream().filter(e -> e.getArea().equals(entity.getArea()))
-                        .filter(e -> e.getType().equals("P")).collect(Collectors.toList()).get(0).getName());
+                        .filter(e -> e.getType().equals(SettleTypes.AREA.getName())).collect(Collectors.toList()).get(0).getName());
 
                 s.setType(Util.OBJECT_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
-            } else if (!entity.getRegion().isEmpty() && entity.getType().equals("K")) {
+            } else if (!entity.getRegion().isEmpty() && entity.getType().equals(SettleTypes.SPECIAL_CITY.getName())) {
                 // cities with special status
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
                         .collect(Collectors.toList()).get(0).getName());

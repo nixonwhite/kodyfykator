@@ -6,9 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
+import ua.org.gurt.kodyfykator.domain.SettleTypes;
 import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 @Slf4j
@@ -21,14 +23,23 @@ public final class Util {
     public static final List<SettlementEntity> SETTLES = createList();
 
     private static Map<String, String> createMap() {
-        return Map.of("O", "область", "K", "місто", "P", "район", "H", "територія територіальної громади", "M", "місто", "T", "селище міського типу", "C", "село", "X", "селище", "B", "район в місті");
+        return Map.of(
+                SettleTypes.REGION.getName(), "область",
+                SettleTypes.SPECIAL_CITY.getName(), "місто",
+                SettleTypes.AREA.getName(), "район",
+                SettleTypes.TERRITORY.getName(), "територія територіальної громади",
+                SettleTypes.CITY.getName(), "місто",
+                SettleTypes.URBAN_VILLAGE.getName(), "селище міського типу",
+                SettleTypes.VILLAGE.getName(), "село",
+                SettleTypes.TOWNSHIP.getName(), "селище",
+                SettleTypes.CITY_AREA.getName(), "район в місті");
     }
 
     private static List<SettlementEntity> createList() {
-        try {
+        try (InputStream is = new ClassPathResource("classpath:kodyfikator.json").getInputStream()) {
             var mapper = new ObjectMapper();
-            return mapper.readValue(new ClassPathResource("classpath:kodyfikator.json").getInputStream(),
-                    new TypeReference<List<SettlementEntity>>() {});
+            return mapper.readValue(is, new TypeReference<List<SettlementEntity>>() {
+            });
         } catch (IOException e) {
             LOGGER.error("[!]" + e.getMessage());
         }
