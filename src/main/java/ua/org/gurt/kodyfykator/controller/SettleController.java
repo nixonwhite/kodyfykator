@@ -47,7 +47,7 @@ public class SettleController {
     public String findByName(@PathVariable String name) {
 
         var filteredCities = Util.SETTLES.stream().filter(e -> e.getName().toLowerCase()
-                .startsWith(name.toLowerCase())).collect(Collectors.toList());
+                .startsWith(name.toLowerCase())).toList();
 
         List<SettlementEntity> preparedForJSON = new ArrayList<>();
 
@@ -59,20 +59,20 @@ public class SettleController {
             if (!entity.getSettlement().isEmpty()) {
                 // settlements
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getSettlement().equals(entity.getSettlement()))
-                        .filter(e -> e.getType().equals(entity.getType())).collect(Collectors.toList()).get(0).getName());
+                        .filter(e -> e.getType().equals(entity.getType())).toList().get(0).getName());
 
                 s.setRegion(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
-                        .filter(e -> e.getType().equals(SettleTypes.REGION.getName())).collect(Collectors.toList()).get(0).getName());
+                        .filter(e -> e.getType().equals(SettleTypes.REGION.getName())).toList().get(0).getName());
 
                 s.setArea(Util.SETTLES.stream().filter(e -> e.getArea().equals(entity.getArea()))
-                        .filter(e -> e.getType().equals(SettleTypes.AREA.getName())).collect(Collectors.toList()).get(0).getName());
+                        .filter(e -> e.getType().equals(SettleTypes.AREA.getName())).toList().get(0).getName());
 
                 s.setType(Util.OBJECT_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
             } else if (!entity.getRegion().isEmpty() && entity.getType().equals(SettleTypes.SPECIAL_CITY.getName())) {
                 // cities with special status
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
-                        .collect(Collectors.toList()).get(0).getName());
+                        .toList().get(0).getName());
 
                 s.setType(Util.OBJECT_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
@@ -91,7 +91,7 @@ public class SettleController {
      */
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
         var mapper = new ObjectMapper();
-        var jsonString = "";
+        String jsonString = "";
         try {
             jsonString = mapper.writeValueAsString(preparedForJSON);
         } catch (JsonProcessingException e) {

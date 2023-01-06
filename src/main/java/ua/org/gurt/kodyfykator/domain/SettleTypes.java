@@ -12,6 +12,7 @@ public enum SettleTypes {
     TOWNSHIP("X");
 
     private final String name;
+
     SettleTypes(String name) {
         this.name = name;
     }
