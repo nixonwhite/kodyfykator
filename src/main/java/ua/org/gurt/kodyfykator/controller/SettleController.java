@@ -2,8 +2,8 @@ package ua.org.gurt.kodyfykator.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONArray;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ import ua.org.gurt.kodyfykator.domain.SettleTypes;
 import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 import ua.org.gurt.kodyfykator.util.Util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -52,27 +52,31 @@ public class SettleController {
         List<SettlementEntity> preparedForJSON = new ArrayList<>();
 
         for (SettlementEntity entity : filteredCities) {
-            if (entity.getType().equals(SettleTypes.CITY_AREA.getName())) continue; //area in city; we don't care about it
+            if (entity.getType().equals(SettleTypes.CITY_AREA.getName()))
+                continue; //area in city; we don't care about it
 
             var s = new SettlementEntity();
 
             if (!entity.getSettlement().isEmpty()) {
                 // settlements
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getSettlement().equals(entity.getSettlement()))
-                        .filter(e -> e.getType().equals(entity.getType())).toList().get(0).getName());
+                        .filter(e -> e.getType().equals(entity.getType())).findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
 
                 s.setRegion(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
-                        .filter(e -> e.getType().equals(SettleTypes.REGION.getName())).toList().get(0).getName());
+                        .filter(e -> e.getType().equals(SettleTypes.REGION.getName())).findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
 
                 s.setArea(Util.SETTLES.stream().filter(e -> e.getArea().equals(entity.getArea()))
-                        .filter(e -> e.getType().equals(SettleTypes.AREA.getName())).toList().get(0).getName());
+                        .filter(e -> e.getType().equals(SettleTypes.AREA.getName())).findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
 
                 s.setType(Util.OBJECT_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
             } else if (!entity.getRegion().isEmpty() && entity.getType().equals(SettleTypes.SPECIAL_CITY.getName())) {
                 // cities with special status
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
-                        .toList().get(0).getName());
+                        .findFirst().orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
 
                 s.setType(Util.OBJECT_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
@@ -90,10 +94,9 @@ public class SettleController {
      * @return String representation of JSON array
      */
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
-        var mapper = new ObjectMapper();
         String jsonString = "";
         try {
-            jsonString = mapper.writeValueAsString(preparedForJSON);
+            jsonString = new ObjectMapper().writeValueAsString(preparedForJSON);
         } catch (JsonProcessingException e) {
             LOGGER.error("[!]" + e.getMessage());
         }
