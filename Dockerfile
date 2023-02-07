@@ -1,5 +1,4 @@
-FROM amazoncorretto:17-alpine
-RUN apk update && apk -U upgrade
+FROM eclipse-temurin:17-alpine
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
