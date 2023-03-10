@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.MediaType;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ua.org.gurt.kodyfykator.domain.KodyfykatorIllegalException;
 import ua.org.gurt.kodyfykator.domain.SettleTypes;
 import ua.org.gurt.kodyfykator.domain.SettlementEntity;
 import ua.org.gurt.kodyfykator.util.Util;
@@ -27,8 +26,6 @@ public class SettleController {
 
     @Autowired
     BuildProperties buildProperties;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SettleController.class);
 
     /***
      * @return String version of app
@@ -61,24 +58,24 @@ public class SettleController {
                 // settlements
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getSettlement().equals(entity.getSettlement()))
                         .filter(e -> e.getType().equals(entity.getType())).findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
+                        .orElseThrow(KodyfykatorIllegalException::new).getName());
 
                 s.setRegion(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
                         .filter(e -> e.getType().equals(SettleTypes.REGION.getName())).findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
+                        .orElseThrow(KodyfykatorIllegalException::new).getName());
 
                 s.setArea(Util.SETTLES.stream().filter(e -> e.getArea().equals(entity.getArea()))
                         .filter(e -> e.getType().equals(SettleTypes.AREA.getName())).findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
+                        .orElseThrow(KodyfykatorIllegalException::new).getName());
 
-                s.setType(Util.OBJECT_TYPES.get(entity.getType()));
+                s.setType(Util.SETTLE_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
             } else if (!entity.getRegion().isEmpty() && entity.getType().equals(SettleTypes.SPECIAL_CITY.getName())) {
                 // cities with special status
                 s.setSettlement(Util.SETTLES.stream().filter(e -> e.getRegion().equals(entity.getRegion()))
-                        .findFirst().orElseThrow(() -> new IllegalArgumentException("No such element!")).getName());
+                        .findFirst().orElseThrow(KodyfykatorIllegalException::new).getName());
 
-                s.setType(Util.OBJECT_TYPES.get(entity.getType()));
+                s.setType(Util.SETTLE_TYPES.get(entity.getType()));
                 preparedForJSON.add(s);
             }
         }
@@ -98,7 +95,7 @@ public class SettleController {
         try {
             jsonString = new ObjectMapper().writeValueAsString(preparedForJSON);
         } catch (JsonProcessingException e) {
-            LOGGER.error("[!]" + e.getMessage());
+            log.error("[!]" + e.getMessage());
         }
         return new JSONArray(jsonString).toString();
     }
