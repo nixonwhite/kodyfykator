@@ -27,6 +27,8 @@ public class SettleController {
     @Autowired
     BuildProperties buildProperties;
 
+    private final ObjectMapper mapper = new ObjectMapper();
+
     /***
      * @return String version of app
      */
@@ -93,7 +95,7 @@ public class SettleController {
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
         String jsonString = "";
         try {
-            jsonString = new ObjectMapper().writeValueAsString(preparedForJSON);
+            jsonString = mapper.writeValueAsString(preparedForJSON);
         } catch (JsonProcessingException e) {
             log.error("[!]" + e.getMessage());
         }
