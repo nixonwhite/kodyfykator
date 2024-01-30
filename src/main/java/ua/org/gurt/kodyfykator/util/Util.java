@@ -35,7 +35,7 @@ public final class Util {
         try (InputStream is = new ClassPathResource("classpath:kodyfikator.json").getInputStream()) {
             return new ObjectMapper().readValue(is, new TypeReference<>() {});
         } catch (IOException e) {
-            log.error("[!]" + e.getMessage());
+            log.error("[!] {}", e.getMessage());
         }
         return new ArrayList<>();
     }

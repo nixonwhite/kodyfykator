@@ -93,11 +93,11 @@ public class SettleController {
      * @return String representation of JSON array
      */
     private String getJSONArrayAsString(List<SettlementEntity> preparedForJSON) {
-        String jsonString = "";
+        var jsonString = "";
         try {
             jsonString = mapper.writeValueAsString(preparedForJSON);
         } catch (JsonProcessingException e) {
-            log.error("[!]" + e.getMessage());
+            log.error("[!] {}", e.getMessage());
         }
         return new JSONArray(jsonString).toString();
     }

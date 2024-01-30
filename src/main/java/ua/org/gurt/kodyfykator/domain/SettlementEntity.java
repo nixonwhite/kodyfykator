@@ -2,11 +2,8 @@ package ua.org.gurt.kodyfykator.domain;
 
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class SettlementEntity {
 
     private String region;
