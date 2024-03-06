@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre-alpine
+FROM azul/zulu-openjdk-alpine:21-jre-headless
 WORKDIR /app
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
