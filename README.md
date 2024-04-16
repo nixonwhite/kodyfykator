@@ -7,9 +7,9 @@ Helper reference guide-codifier of the settlements of Ukraine after areas and re
 Used Spring Boot. Embedded `Tomcat` instance runs at `8080` port
 
 ## Build && run
->$ mvn clean package -DskipTests
+>$ gradle bootJar
 
->$ java -jar target/*.jar
+>$ java -jar build/libs/*.jar
 
 Also available at [hub.docker.com](https://hub.docker.com)
 

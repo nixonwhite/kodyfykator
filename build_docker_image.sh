@@ -1,5 +1,4 @@
-mvn clean package -DskipTests
+gradle bootJar
 docker build . -t nixonwhite/kodyfykator
-mvn clean
+gradle clean
 docker push nixonwhite/kodyfykator
-
