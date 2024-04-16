@@ -1,6 +1,6 @@
 # Kodyfykator 2021
 
-[![Java CI with Maven](https://github.com/nixonwhite/kodyfykator/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/nixonwhite/kodyfykator/actions/workflows/maven.yml)
+[![Java CI with Gradle](https://github.com/nixonwhite/kodyfykator/actions/workflows/gradle.yml/badge.svg)](https://github.com/nixonwhite/kodyfykator/actions/workflows/gradle.yml)
 
 Helper reference guide-codifier of the settlements of Ukraine after areas and regions merging.
 
