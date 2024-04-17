@@ -1,4 +1,5 @@
-gradle bootJar
+#!/bin/sh
+./gradlew bootJar
 docker build . -t nixonwhite/kodyfykator
-gradle clean
+./gradlew clean
 docker push nixonwhite/kodyfykator
