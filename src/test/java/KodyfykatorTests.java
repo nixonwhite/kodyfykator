@@ -10,26 +10,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = KodyfykatorApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @AutoConfigureMockMvc
-public class KodyfykatorTests {
+class KodyfykatorTests {
 
     @Autowired
-    public SettleController controller;
+    SettleController controller;
 
     @Autowired
-    private TestRestTemplate testRestTemplate;
+    TestRestTemplate testRestTemplate;
 
     @Test
-    public void contextLoads() {
+    void contextLoads() {
         assertThat(controller).isNotNull();
     }
 
     @Test
-    public void testControllerver() {
+    void testControllerver() {
         assertThat(this.testRestTemplate.getForObject("http://localhost:8080/version", String.class)).contains("1.1");
     }
 
     @Test
-    public void testController() {
+    void testController() {
         assertThat(this.testRestTemplate.postForEntity("http://localhost:8080/find/", "test", String.class)).isNotNull();
     }
 }

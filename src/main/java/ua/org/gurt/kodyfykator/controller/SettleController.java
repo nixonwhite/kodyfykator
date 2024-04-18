@@ -2,6 +2,7 @@ package ua.org.gurt.kodyfykator.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,10 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class SettleController {
 
-    @Autowired
-    BuildProperties buildProperties;
+    private final BuildProperties buildProperties;
 
     private final ObjectMapper mapper = new ObjectMapper();
 

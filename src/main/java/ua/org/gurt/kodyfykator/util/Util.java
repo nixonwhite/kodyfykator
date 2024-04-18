@@ -14,6 +14,9 @@ import java.util.*;
 @Slf4j
 public final class Util {
 
+    private Util() {
+    }
+
     public static final Map<String, String> SETTLE_TYPES = createMap();
 
     public static final List<SettlementEntity> SETTLES = createList();
@@ -33,7 +36,8 @@ public final class Util {
 
     private static List<SettlementEntity> createList() {
         try (InputStream is = new ClassPathResource("classpath:kodyfikator.json").getInputStream()) {
-            return new ObjectMapper().readValue(is, new TypeReference<>() {});
+            return new ObjectMapper().readValue(is, new TypeReference<>() {
+            });
         } catch (IOException e) {
             log.error("[!] {}", e.getMessage());
         }
