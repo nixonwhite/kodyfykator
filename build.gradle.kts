@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "ua.org.gurt"
-version = "1.1.18"
+version = "1.1.19"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.17.0"
@@ -37,10 +37,6 @@ dependencies {
 
 springBoot {
     buildInfo()
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }
 
 tasks.withType<JavaCompile>() {
