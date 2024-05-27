@@ -1,15 +1,16 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.2.5"
-    id("io.spring.dependency-management") version "1.1.4"
+    id("org.springframework.boot") version "3.2.6"
+    id("io.spring.dependency-management") version "1.1.5"
     id("org.sonarqube") version "5.0.0.4638"
+    id("io.snyk.gradle.plugin.snykplugin") version "0.6.1"
 }
 
 group = "ua.org.gurt"
-version = "1.1.19"
+version = "1.1.21"
 description = "kodyfykator"
 
-val jacksonCoreVersion = "2.17.0"
+val jacksonCoreVersion = "2.17.1"
 val jsonVersion = "20240303"
 
 repositories {
@@ -37,6 +38,11 @@ dependencies {
 
 springBoot {
     buildInfo()
+}
+
+snyk {
+    setAutoDownload(true)
+    setAutoUpdate(true)
 }
 
 tasks.withType<JavaCompile>() {
