@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre-alpine
+FROM bellsoft/liberica-openjre-alpine:21
 WORKDIR /app
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
