@@ -3,14 +3,14 @@ plugins {
     id("org.springframework.boot") version "3.2.10"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.sonarqube") version "5.1.0.4882"
-    id("io.snyk.gradle.plugin.snykplugin") version "0.6.1"
+    id("io.snyk.gradle.plugin.snykplugin") version "0.7.0"
 }
 
 group = "ua.org.gurt"
-version = "1.1.25"
+version = "1.1.26"
 description = "kodyfykator"
 
-val jacksonCoreVersion = "2.17.2"
+val jacksonCoreVersion = "2.18.0"
 val jsonVersion = "20240303"
 
 repositories {
