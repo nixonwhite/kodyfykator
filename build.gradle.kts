@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "ua.org.gurt"
-version = "1.1.30"
+version = "1.1.31"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.18.2"
@@ -28,6 +28,7 @@ configurations {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("com.fasterxml.jackson.core:jackson-core:${jacksonCoreVersion}")
     implementation("org.json:json:${jsonVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

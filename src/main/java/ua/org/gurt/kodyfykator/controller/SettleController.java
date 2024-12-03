@@ -43,7 +43,7 @@ public class SettleController {
      * @param name String request name
      * @return JSON array of found objects as String
      */
-    @PostMapping(value = "find/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/find/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String findByName(@PathVariable("name") String name) {
 
         var filteredCities = Util.SETTLES.stream().filter(e -> e.getName().toLowerCase()
