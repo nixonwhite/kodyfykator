@@ -6,18 +6,20 @@ plugins {
 }
 
 group = "ua.org.gurt"
-version = "1.1.33"
+version = "1.1.34"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.18.2"
-val jsonVersion = "20240303"
+val jsonVersion = "20241224"
 
 repositories {
     mavenCentral()
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_23
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
 }
 
 configurations {
@@ -39,10 +41,6 @@ springBoot {
     buildInfo()
 }
 
-tasks.withType<JavaCompile>() {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType<Javadoc>() {
-    options.encoding = "UTF-8"
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
