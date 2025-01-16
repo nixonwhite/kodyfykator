@@ -6,11 +6,11 @@ plugins {
 }
 
 group = "ua.org.gurt"
-version = "1.1.34"
+version = "1.1.35"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.18.2"
-val jsonVersion = "20241224"
+val jsonVersion = "20250107"
 
 repositories {
     mavenCentral()
