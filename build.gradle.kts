@@ -1,12 +1,12 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.2"
+    id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "ua.org.gurt"
-version = "1.1.36"
+version = "1.1.37"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.18.2"

@@ -1,4 +1,4 @@
-FROM bellsoft/liberica-openjre-alpine:23
+FROM bellsoft/liberica-runtime-container:jre-23-glibc
 WORKDIR /app
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} kodyfykator.jar
