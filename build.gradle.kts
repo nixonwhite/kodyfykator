@@ -6,10 +6,10 @@ plugins {
 }
 
 group = "ua.org.gurt"
-version = "1.1.37"
+version = "1.1.38"
 description = "kodyfykator"
 
-val jacksonCoreVersion = "2.18.2"
+val jacksonCoreVersion = "2.18.3"
 val jsonVersion = "20250107"
 
 repositories {
