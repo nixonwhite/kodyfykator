@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "ua.org.gurt"
-version = "1.1.40"
+version = "1.1.41"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.19.0"

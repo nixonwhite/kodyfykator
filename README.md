@@ -29,4 +29,4 @@ Also available at [hub.docker.com](https://hub.docker.com)
 
 ## Links
 
-Official documents here: [mtu.gov.ua](https://mtu.gov.ua/content/kodifikator-administrativnoteritorialnih-odinic-ta-teritoriy-teritorialnih-gromad.html)
+Official documents here: [mtu.gov.ua](https://mindev.gov.ua/diialnist/rozvytok-mistsevoho-samovriaduvannia/kodyfikator-administratyvno-terytorialnykh-odynyts-ta-terytorii-terytorialnykh-hromad)
