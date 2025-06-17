@@ -1,12 +1,12 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.4.6"
+    id("org.springframework.boot") version "3.5.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "ua.org.gurt"
-version = "1.1.42"
+version = "1.1.43"
 description = "kodyfykator"
 
 val jacksonCoreVersion = "2.19.0"
@@ -18,7 +18,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(24)
     }
 }
 
