@@ -1,7 +1,5 @@
 # Kodyfykator 2021
 
-[![Java CI with Gradle](https://github.com/nixonwhite/kodyfykator/actions/workflows/gradle.yml/badge.svg)](https://github.com/nixonwhite/kodyfykator/actions/workflows/gradle.yml)
-
 Helper reference guide-codifier of the settlements of Ukraine after areas and regions merging.
 
 Used Spring Boot. Embedded `Tomcat` instance runs at `8080` port
