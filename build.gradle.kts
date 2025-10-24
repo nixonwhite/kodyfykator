@@ -1,15 +1,15 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.5.6"
+    id("org.springframework.boot") version "3.5.7"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.sonarqube") version "6.3.1.5724"
+    id("org.sonarqube") version "7.0.0.6105"
 }
 
 group = "ua.org.gurt"
-version = "1.1.47"
+version = "1.1.48"
 description = "kodyfykator"
 
-val jacksonCoreVersion = "2.20.0"
+val jacksonCoreVersion = "3.0.1"
 val jsonVersion = "20250517"
 
 repositories {
@@ -30,7 +30,7 @@ configurations {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.core:jackson-core:${jacksonCoreVersion}")
+    implementation("tools.jackson.core:jackson-core:${jacksonCoreVersion}")
     implementation("org.json:json:${jsonVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     compileOnly("org.projectlombok:lombok")
