@@ -1,15 +1,15 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.5.7"
+    id("org.springframework.boot") version "3.5.8"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.sonarqube") version "7.0.0.6105"
+    id("org.sonarqube") version "7.1.0.6387"
 }
 
 group = "ua.org.gurt"
-version = "1.1.48"
+version = "1.1.49"
 description = "kodyfykator"
 
-val jacksonCoreVersion = "3.0.1"
+val jacksonCoreVersion = "3.0.2"
 val jsonVersion = "20250517"
 
 repositories {
